@@ -5,6 +5,14 @@ from test_framework import generic_test
 
 def apply_permutation(perm: List[int], A: List[int]) -> None:
     # TODO - you fill in here.
+    for i in range(len(A)):
+        c = i
+        v = A[i]
+        while perm[c] >= 0:
+            idx = perm[c]
+            A[idx], v = v, A[idx]
+            perm[c] = -1
+            c = idx
     return
 
 
