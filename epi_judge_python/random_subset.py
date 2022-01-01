@@ -1,4 +1,5 @@
 import functools
+import random
 from typing import List
 
 from test_framework import generic_test
@@ -10,7 +11,14 @@ from test_framework.test_utils import enable_executor_hook
 
 def random_subset(n: int, k: int) -> List[int]:
     # TODO - you fill in here.
-    return []
+    A = [i for i in range(n)]
+    for i in range(k):
+        x = random.randint(0, n - 1 - i) + i
+        A[i], A[x] = A[x], A[i]
+    # for i in range(k):
+    #     x = random.randint(0, k - 1 - i)
+    #     A[k - 1 - i], A[x] = A[x], A[k - 1 - i]
+    return A[:k]
 
 
 @enable_executor_hook
@@ -33,6 +41,7 @@ def random_subset_wrapper(executor, n, k):
 
 
 if __name__ == '__main__':
+    # print(random_subset(5, 2))
     exit(
         generic_test.generic_test_main('random_subset.py', 'random_subset.tsv',
                                        random_subset_wrapper))

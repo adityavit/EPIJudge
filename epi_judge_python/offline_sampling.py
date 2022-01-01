@@ -1,4 +1,5 @@
 import functools
+import random
 from typing import List
 
 from test_framework import generic_test
@@ -10,8 +11,13 @@ from test_framework.test_utils import enable_executor_hook
 
 def random_sampling(k: int, A: List[int]) -> None:
     # TODO - you fill in here.
+    if k > len(A):
+        return
+    n = len(A)
+    for i in range(k):
+        idx = random.randrange(i, n)
+        A[i], A[idx] = A[idx], A[i]
     return
-
 
 @enable_executor_hook
 def random_sampling_wrapper(executor, k, A):
